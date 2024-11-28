@@ -1,4 +1,3 @@
-// backend/server.js
 require('dotenv').config();  // Cargar las variables de entorno desde el archivo .env
 
 const express = require('express');
@@ -7,13 +6,22 @@ const cuentaRoutes = require('./routes/cuentaRoutes');
 const impositorRoutes = require('./routes/impositorRoutes');
 const prestamoRoutes = require('./routes/prestamoRoutes');
 const sucursalRoutes = require('./routes/sucursalRoutes');
+const path = require('path');  // Necesario para trabajar con rutas absolutas
 
 const app = express();
 
 // Middleware para parsear cuerpos JSON
 app.use(express.json());
 
-// Rutas
+// Middleware para servir archivos estáticos desde la carpeta 'frontend'
+app.use(express.static(path.join(__dirname, 'frontend'))); // Sirve los archivos estáticos de 'frontend'
+
+// Ruta para servir el archivo index.html cuando se accede a la raíz
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'index.html'));  // Ruta del archivo HTML
+});
+
+// Rutas API
 app.use('/api/clientes', clienteRoutes);  // Usar rutas específicas en lugar de '/api'
 app.use('/api/cuentas', cuentaRoutes);
 app.use('/api/impositores', impositorRoutes);
