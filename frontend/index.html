@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de BBVA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Gestión de BBVA</h1>
+
+    <!-- Botones para cambiar entre tablas -->
+    <div class="buttons-container">
+        <button onclick="loadTable('clientes')">Clientes</button>
+        <button onclick="loadTable('cuentas')">Cuentas</button>
+        <button onclick="loadTable('impositores')">Impositores</button>
+        <button onclick="loadTable('prestamos')">Préstamos</button>
+        <button onclick="loadTable('sucursales')">Sucursales</button>
+    </div>
+
+    <!-- Cuadro de búsqueda -->
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Buscar por cualquier parámetro">
+        <button onclick="searchData()">Buscar</button>
+    </div>
+
+    <!-- Contenedor de la tabla dinámica -->
+    <h2 id="table-title">Clientes</h2>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Calle</th>
+                <th>Ciudad</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <!-- Botón de impresión -->
+    <button onclick="printTable()">Imprimir Tabla</button>
+
+    <script src="app.js"></script>
+</body>
+</html>
