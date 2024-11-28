@@ -1,13 +1,14 @@
 // backend/db.js
+require('dotenv').config(); // Cargar las variables de entorno desde el archivo .env
 const { Pool } = require('pg');
 
-// Configura los datos de conexión
+// Configura los datos de conexión utilizando las variables de entorno
 const pool = new Pool({
-  user: 'bbva_user',
-  host: 'dpg-ct47om3tq21c7391p1ag-a.oregon-postgres.render.com',
-  database: 'bbva',
-  password: 'WMceO7mTUVRHHKjzSPKqEvYjj2ff1dfb',
-  port: 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT || 5432,  // Usar el puerto definido en las variables de entorno o 5432 por defecto
 });
 
 // Exporta la instancia del pool para usar en otros archivos
